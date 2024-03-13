@@ -14,7 +14,7 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/germany_certificate.crt -keyout
 RUN mkdir -p /var/run/nginx
 
 #change the current configuration file with ours
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 #give permission to root and main user
 RUN chmod 755 /var/www/html 
