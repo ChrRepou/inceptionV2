@@ -13,4 +13,4 @@ RUN chown -R root:root /var/www/wordpress
 COPY wp-config-sample.php /var/www/wordpress/wp-config.php
 COPY create_page.sh /
 
-CMD [ "/script.sh" ]
+CMD [ "/create_page.sh" ]
