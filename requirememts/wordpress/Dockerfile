@@ -1,16 +1,16 @@
 FROM debian:buster
 
-RUN apt update -y \
-    && apt upgrade -y \
-    && apt-get install -y wget php7.3 php-fpm php-mysql mariadb-client unzip \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt-get install -y php php-mysql php-cli php-mbstring php-fpm php-gettext mariadb-client wget
+RUN rm -rf /etc/php/7.3/fpm/pool.d/www.conf
+RUN mkdir -p /run/php
 
-RUN wget https://wordpress.org/latest.zip -P /var/www \
-    && cd /var/www && unzip latest.zip && rm latest.zip
+COPY wordpress.conf /etc/php/7.3/fpm/pool.d/
+COPY create_page.sh /tmp/
 
-RUN chown -R root:root /var/www/wordpress
+RUN chmod +x /tmp/create_page.sh
 
-COPY wp-config-sample.php /var/www/wordpress/wp-config.php
-COPY create_page.sh /
+EXPOSE 9000
 
-CMD [ "/create_page.sh" ]
+ENTRYPOINT [ "sh", "/tmp/create_page.sh" ]

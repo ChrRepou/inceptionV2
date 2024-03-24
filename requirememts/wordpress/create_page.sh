@@ -1,42 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
-# create directory to use in nginx container later and also to set up the WordPress conf
-mkdir /var/www/
-mkdir /var/www/html
+if [ -f "/var/www/html/wordpress/wp-config.php" ]
 
-cd /var/www/html
+then
+  echo "Wordpress is already confiured."
+else
+  wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+  chmod +x wp-cli.phar
+  mv wp-cli.phar /usr/local/bin/wp
+  wp core download --path=/var/www/wordpress --allow-root
+  wp config create --dbname=wordpress --dbuser=crepou --dbpass=pass --dbhost=mariadb --path=/var/www/wordpress --skip-check --allow-root
+  wp core install --path=/var/www/wordpress --url=crepou.42.fr --title=Inception --admin_user=ChristinaRepou --admin_password=ChristinaRepou --admin_email=crepou@student.42heilbronn.de --skip-email --allow-root
+  wp theme install teluro --path=/var/www/wordpress --activate --allow-root
+  wp user create leon leon@le.on --role=author --path=/var/www/wordpress --user_pass=leon --allow-root
 
-# Remove existing content (if any)
-rm -rf *
+fi
 
-# Install WP-CLI
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
-chmod +x wp-cli.phar 
-mv wp-cli.phar /usr/local/bin/wp
-
-# WordPress Core Download and Configuration
-wp core download --allow-root
-
-# Substitute environment variables in wp-config.php using COPY in Dockerfile
-# No need for sed commands in the script
-
-# WordPress Installation
-wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
-
-# Creating a User
-wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
-
-# Theme and Plugin Installation --install another
-wp theme install astra --activate --allow-root
-wp plugin install redis-cache --activate --allow-root
-wp plugin update --all --allow-root
-
-# PHP-FPM Configuration
-sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
-mkdir /run/php
-
-# Enabling Redis Cache for WordPress
-wp redis enable --allow-root
-
-# Start PHP-FPM
 /usr/sbin/php-fpm7.3 -F
