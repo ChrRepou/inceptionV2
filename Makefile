@@ -1,26 +1,26 @@
 .PHONY: build up start down destroy stop restart clear
 
 build:
-	docker-compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yaml build
 
 up:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f docker-compose.yaml up -d
 
 start:
-	docker-compose -f docker-compose.yml start
+	docker-compose -f docker-compose.yaml start
 
 down:
-	docker-compose -f docker-compose.yml down
+	docker-compose -f docker-compose.yaml down
 
 destroy:
-	docker-compose -f docker-compose.yml down -v
+	docker-compose -f docker-compose.yaml down -v
 
 stop:
-	docker-compose -f docker-compose.yml stop
+	docker-compose -f docker-compose.yaml stop
 
 restart:
-	docker-compose -f docker-compose.yml stop
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f docker-compose.yaml stop
+	docker-compose -f docker-compose.yaml up -d
 
 clear:
 	docker container prune -f
