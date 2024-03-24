@@ -6,7 +6,7 @@ RUN apt-get install -y php php-mysql php-cli php-mbstring php-fpm php-gettext ma
 RUN rm -rf /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /run/php
 
-COPY wordpress.conf /etc/php/7.3/fpm/pool.d/
+COPY www.conf /etc/php/7.3/fpm/pool.d/
 COPY create_page.sh /tmp/
 
 RUN chmod +x /tmp/create_page.sh
