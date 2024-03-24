@@ -25,5 +25,5 @@ restart:
 clear:
 	docker container prune -f
 	docker image prune -af
-	docker volume prune -f
+	docker volume rm $(docker volume ls -qf "dangling=true")
 	docker network prune -f
