@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f "/var/www/html/wordpress/wp-config.php" ]
+if [ -f "/var/www/wordpress/wp-config.php" ]
 
 then
   echo "Wordpress is already confiured."
