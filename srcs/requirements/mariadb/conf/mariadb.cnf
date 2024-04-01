@@ -1,0 +1,3 @@
+[mysqld]
+bind_address=MYSQL_BIND_ADDRESS
+port=MYSQL_PORT
