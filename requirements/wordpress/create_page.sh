@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WORDPRESS_DIR="/home/christina/data/html"
+WORDPRESS_DIR="/var/lib/docker/volumes/wordpress/_data"
 
 if [ -f "$WORDPRESS_DIR/wp-config.php" ]; then
   echo "WordPress is already configured."
