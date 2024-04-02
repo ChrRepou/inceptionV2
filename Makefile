@@ -1,15 +1,10 @@
-.PHONY: all install host volumes build up start down destroy stop restart clear list delete logs logs_mariadb logs_wordpress logs_nginx re
+.PHONY: all host volumes build up start down destroy stop restart clear list delete logs logs_mariadb logs_wordpress logs_nginx re
 
 DC=docker-compose
 DOCKER_FILE=./srcs/$(DC).yaml
 DOCKER_PATH=/usr/bin/docker-compose
 
 all: volumes build up
-
-install:
-	curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o $(DOCKER_PATH)
-	sudo chown $(USER) $(DOCKER_PATH)
-	sudo chmod 777 $(DOCKER_PATH)
 
 host:
 	sudo sed -i 's|localhost|crepou.42.fr|g' /etc/hosts
@@ -24,7 +19,6 @@ build:
 	$(DC) -f $(DOCKER_FILE) build
 
 up:
-	sudo systemctl stop nginx
 	$(DC) -f $(DOCKER_FILE) up -d
 
 start:
