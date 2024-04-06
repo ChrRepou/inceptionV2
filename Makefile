@@ -3,6 +3,7 @@
 DC=docker-compose
 DOCKER_FILE=./srcs/$(DC).yaml
 DOCKER_PATH=/usr/bin/docker-compose
+HOME_PATH=/home/christina
 
 all: volumes build up
 
@@ -10,10 +11,10 @@ host:
 	sudo sed -i 's|localhost|crepou.42.fr|g' /etc/hosts
 
 volumes:
-	mkdir -p $(HOME)/data/mysql
-	mkdir -p $(HOME)/data/html
-	sudo chown -R $(USER) $(HOME)/data/
-	sudo chmod -R 777 $(HOME)/data/
+	mkdir -p $(HOME_PATH)/data/mysql
+	mkdir -p $(HOME_PATH)/data/html
+	sudo chown -R $(USER) $(HOME_PATH)/data/
+	sudo chmod -R 777 $(HOME_PATH)/data/
 
 build:
 	$(DC) -f $(DOCKER_FILE) build
@@ -38,9 +39,9 @@ restart:
 	$(DC) -f $(DOCKER_FILE) up -d
 
 clear:
-	sudo chown -R $(USER) $(HOME)/data
-	sudo chmod -R 777 $(HOME)/data
-	rm -rf $(HOME)/data
+	sudo chown -R $(USER) $(HOME_PATH)/data
+	sudo chmod -R 777 $(HOME_PATH)/data
+	rm -rf $(HOME_PATH)/data
 	docker volume prune -f
 	docker volume rm srcs_wordpress
 	docker volume rm srcs_mariadb
