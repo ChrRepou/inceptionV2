@@ -2,7 +2,7 @@ FROM debian:buster
 
 RUN apt update -y
 RUN apt-get upgrade -y
-RUN apt install -y php php-mysql php-cli php-mbstring php-fpm php-gettext mariadb-client wget mysql-client
+RUN apt-get install -y php php-mysql php-cli php-mbstring php-fpm php-gettext mariadb-client wget
 RUN rm -rf /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /run/php
 
