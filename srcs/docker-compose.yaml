@@ -2,11 +2,13 @@ version: '3.5'
 
 volumes:
   wordpress:
+    driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/christina/data/html
+      device: /home/christina/data/www
   mariadb:
+    driver: local
     driver_opts:
       type: none
       o: bind
@@ -15,13 +17,12 @@ volumes:
 services:
   nginx:
     build: requirements/nginx
-    image: nginx
     container_name: nginx
     env_file: .env
     ports:
       - "443:443"
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/var/www/
     depends_on:
       - wordpress
     networks:
@@ -29,11 +30,10 @@ services:
     restart: on-failure
   wordpress:
     build: requirements/wordpress
-    image: wordpress
     container_name: wordpress
     env_file: .env
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/var/www/
     networks:
       - inception-net
     depends_on:
@@ -41,7 +41,6 @@ services:
     restart: on-failure
   mariadb:
     build: requirements/mariadb
-    image: mariadb
     container_name: mariadb
     env_file: .env
     volumes:
