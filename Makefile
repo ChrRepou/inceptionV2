@@ -15,6 +15,8 @@ volumes:
 	mkdir -p $(HOME_PATH)/data/html
 	sudo chown -R $(USER) $(HOME_PATH)/data/
 	sudo chmod -R 777 $(HOME_PATH)/data/
+	sudo chmod -R 777 $(HOME_PATH)/data/html
+	sudo chmod -R 777 $(HOME_PATH)/data/mysql
 
 build:
 	$(DC) -f $(DOCKER_FILE) build
