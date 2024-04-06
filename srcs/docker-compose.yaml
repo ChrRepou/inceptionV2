@@ -21,7 +21,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wordpress:/var/www/wordpress
+      - wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -33,7 +33,7 @@ services:
     container_name: wordpress
     env_file: .env
     volumes:
-      - wordpress:/var/www/wordpress
+      - wordpress:/var/www/html
     networks:
       - inception-net
     depends_on:
