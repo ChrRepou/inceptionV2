@@ -2,7 +2,7 @@
 
 sed -i 's|PHP_PORT|'${PHP_PORT}'|g' /etc/php/7.3/fpm/pool.d/www.conf
 
-if [ -f "/var/www/html/wordpress/wp-config.php" ]
+if [ -f "/home/christina/data/html/wp-config.php" ]
 
 then
   echo "Wordpress already configured."
