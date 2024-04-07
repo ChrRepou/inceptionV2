@@ -12,10 +12,10 @@ host:
 
 volumes:
 	mkdir -p $(HOME_PATH)/data/mysql
-	mkdir -p $(HOME_PATH)/data/html
+	mkdir -p $(HOME_PATH)/data/www
 	sudo chown -R $(USER) $(HOME_PATH)/data/
 	sudo chmod -R 777 $(HOME_PATH)/data/
-	sudo chmod -R 777 $(HOME_PATH)/data/html
+	sudo chmod -R 777 $(HOME_PATH)/data/www
 	sudo chmod -R 777 $(HOME_PATH)/data/mysql
 
 build:
