@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #sed -i 's|PHP_PORT|'${PHP_PORT}'|g' /etc/php81/php-fpm.d/www.conf
-sed -i "s/listen = 127.0.0.1/listen = 127.0.0.1:9000/g" /etc/php81/php-fpm.d/www.conf
+#sed -i "s/listen = 127.0.0.1/listen = 127.0.0.1:9000/g" /etc/php81/php-fpm.d/www.conf
 
 echo "[WP config] Waiting for MariaDB..."
 while ! mariadb -h${DB_HOST} -u${MYSQL_USER} -p${MYSQL_PASS} ${MYSQL_DB} &>/dev/null;
