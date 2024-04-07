@@ -1,23 +1,22 @@
 FROM alpine:3.18
 
-RUN apk update
-RUN apk add \
-    mariadb-client \
-    php8.1 \
-    php8.1-common \
-    php8.1-curl \
-    php8.1-dom \
-    php8.1-exif \
-    php8.1-fileinfo \
-    php8.1-fpm \
-    php8.1-intl \
-    php8.1-json \
-    php8.1-mbstring \
-    php8.1-mysql \
-    php8.1-opcache \
-    php8.1-phar \
-    php8.1-xml \
-    php8.1-zip
+RUN apk update && apk add mariadb-client \
+php81 \
+php81-common \
+php81-curl \
+php81-dom \
+php81-exif \
+php81-fileinfo \
+php81-fpm \
+php81-intl \
+php81-json \
+php81-mbstring \
+php81-mysqli \
+php81-openssl \
+php81-pecl-igbinary \
+php81-phar \
+php81-xml \
+php81-zip 
 WORKDIR /var/www/wordpress
 RUN wget \
 	https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
