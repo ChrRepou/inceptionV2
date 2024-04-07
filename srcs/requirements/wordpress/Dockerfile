@@ -27,9 +27,6 @@ COPY ./tools/create_page.sh /tmp/
 
 RUN chmod +x /tmp/create_page.sh
 
-RUN rm -f /etc/php81/php-fpm.d/www.conf
-COPY ./conf/www.conf /etc/php81/php-fpm.d/www.conf
-
 EXPOSE 9000
 
 ENTRYPOINT ["/tmp/create_page.sh" ]
