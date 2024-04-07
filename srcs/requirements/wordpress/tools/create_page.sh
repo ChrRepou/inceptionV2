@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#sed -i 's|PHP_PORT|'${PHP_PORT}'|g' /etc/php81/php-fpm.d/www.conf
+sed -i 's|PHP_PORT|'${PHP_PORT}'|g' /etc/php81/php-fpm.d/www.conf
 #sed -i "s/listen = 127.0.0.1:9000/listen = 9000/g" /etc/php81/php-fpm.d/www.conf
 
 sleep 60
