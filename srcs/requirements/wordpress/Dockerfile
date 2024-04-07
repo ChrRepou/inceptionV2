@@ -22,7 +22,7 @@ RUN wget \
 	https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
-RUN wp core download --path=${WORDPRESS_PATH} --allow-root
+RUN wp core download --path=/var/www/wordpress --allow-root
 COPY ./tools/create_page.sh /tmp/
 
 RUN chmod +x /tmp/create_page.sh
