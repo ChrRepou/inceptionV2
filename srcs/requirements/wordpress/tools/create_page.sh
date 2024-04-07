@@ -4,7 +4,7 @@
 sed -i "s/listen = 127.0.0.1:9000/listen = wordpress:9000/g" /etc/php81/php-fpm.d/www.conf
 
 # Check if WordPress configuration exists
-if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
+if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
     echo "WordPress configuration not found. Proceeding with setup."
 
     echo "[WP config] Waiting for MariaDB..."
