@@ -1,7 +1,7 @@
-FROM debian:buster
+FROM alpine:3.18
 
-RUN apt update -y
-RUN apt-get update && apt-get install -y \
+RUN apk update
+RUN apk add \
     mariadb-client \
     php8.1 \
     php8.1-common \
@@ -30,4 +30,4 @@ RUN chmod +x /tmp/create_page.sh
 
 EXPOSE 9000
 
-ENTRYPOINT [ "sh", "/tmp/create_page.sh" ]
+ENTRYPOINT ["/tmp/create_page.sh" ]
