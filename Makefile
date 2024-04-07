@@ -41,7 +41,7 @@ restart:
 	$(DC) -f $(DOCKER_FILE) up -d
 
 clear:
-	sudo chown -R $(USER) $(HOME_PATH)/data
+	sudo chown -R $(HOME_PATH)/data
 	sudo chmod -R 777 $(HOME_PATH)/data
 	rm -rf $(HOME_PATH)/data
 	docker container prune -f
