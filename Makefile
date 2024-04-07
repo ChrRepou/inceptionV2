@@ -44,9 +44,6 @@ clear:
 	sudo chown -R $(USER) $(HOME_PATH)/data
 	sudo chmod -R 777 $(HOME_PATH)/data
 	rm -rf $(HOME_PATH)/data
-	docker volume prune -f
-	docker volume rm srcs_wordpress
-	docker volume rm srcs_mariadb
 	docker container prune -f
 
 list:
