@@ -18,10 +18,6 @@ RUN apt-get update && apt-get install -y \
     php8.1-phar \
     php8.1-xml \
     php8.1-zip
-#RUN rm -rf /etc/php/7.3/fpm/pool.d/www.conf
-#RUN mkdir -p /run/php
-
-#COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 WORKDIR /var/www/wordpress
 RUN wget \
 	https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
