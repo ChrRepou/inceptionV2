@@ -8,6 +8,7 @@ do
     sleep 3
 done
 echo "[WORDPRESS] MariaDB accessible."
+sleep 30
 
 echo "[WORDPRESS] Creating users..."
 wp config create --allow-root --dbname=${MYSQL_DB} --dbuser=${MYSQL_USER} --dbpass=${MYSQL_PASS} --dbhost=mariadb:3306 --url=${DOMAIN} --force #--path=${WORDPRESS_PATH} --skip-check 
