@@ -4,7 +4,7 @@
 sed -i "s/listen = 127.0.0.1:9000/listen = 9000/g" /etc/php81/php-fpm.d/www.conf
 
 echo "[WP config] Waiting for MariaDB..."
-while ! mariadb -h${DB_HOST} -u${WP_DB_USER} -p${WP_DB_PASS} ${WP_DB_NAME} &>/dev/null;
+while ! mariadb -h${DB_HOST} -u${MYSQL_USER} -p${MYSQL_PASS} ${MYSQL_DB} &>/dev/null;
 do
     sleep 3
 done
