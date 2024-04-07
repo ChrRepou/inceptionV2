@@ -54,6 +54,9 @@ delete:
 	cd srcs && docker-compose stop mariadb
 	docker system prune -a
 
+rm_volumes:
+	docker volume rm srcs_mariadb srcs_wordpress
+
 logs:
 	cd srcs && docker-compose logs mariadb wordpress nginx
 
