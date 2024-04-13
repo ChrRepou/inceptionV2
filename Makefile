@@ -1,4 +1,4 @@
-.PHONY: all host volumes build up start down destroy stop restart clear list delete logs logs_mariadb logs_wordpress logs_nginx re
+.PHONY: all host volumes build up start down stop restart clear list logs logs_mariadb logs_wordpress logs_nginx re
 
 DC=docker-compose
 DOCKER_FILE=./srcs/$(DC).yaml
@@ -30,9 +30,6 @@ start:
 down:
 	$(DC) -f $(DOCKER_FILE) down
 
-destroy:
-	$(DC) -f $(DOCKER_FILE) down -v
-
 stop:
 	$(DC) -f $(DOCKER_FILE) stop
 
@@ -41,21 +38,17 @@ restart:
 	$(DC) -f $(DOCKER_FILE) up -d
 
 clear:
-	rm -r $(HOME_PATH)/data
-	docker container prune -f
+	docker stop $(docker ps -qa)
+	docker rm $(docker ps -qa)
+	docker rmi -f $(docker images -qa)
+	docker volume rm $(docker volume ls -q)
+	docker network rm $(docker network ls -q) 2>/dev/null
 
 list:
 	docker ps -a
 	docker images -a
-
-delete:
-	cd srcs && docker-compose stop nginx
-	cd srcs && docker-compose stop wordpress
-	cd srcs && docker-compose stop mariadb
-	docker system prune -a
-
-rm_volumes:
-	docker volume rm srcs_mariadb srcs_wordpress
+	docker volume ls
+	docker network ls
 
 logs:
 	cd srcs && docker-compose logs mariadb wordpress nginx
@@ -69,4 +62,4 @@ logs_wordpress:
 logs_nginx:
 	cd srcs && docker-compose logs nginx
 
-re: clear delete build up
+re: clear all
