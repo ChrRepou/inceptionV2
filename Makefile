@@ -4,6 +4,9 @@ DC=docker-compose
 DOCKER_FILE=./srcs/$(DC).yaml
 DOCKER_PATH=/usr/bin/docker-compose
 HOME_PATH=/home/christina
+DOCKER_REMOVE_CONTAINERS := docker rm $(docker ps -qa)
+DOCKER_REMOVE_IMAGES := docker rmi -f $(docker images -qa)
+DOCKER_REMOVE_VOLUMES := docker volume rm $(docker volume ls -q)
 
 all: volumes build up
 
@@ -60,11 +63,11 @@ logs_nginx:
 re: clear all
 
 remove_containers:
-	docker rm $(docker ps -qa)
+	$(DOCKER_REMOVE_CONTAINERS)
 
 remove_volumes:
-	docker volume rm $(docker volume ls -q)
+	$(DOCKER_REMOVE_VOLUMES)
 
 remove_images:
-	docker rmi -f $(docker images -qa)
+	$(DOCKER_REMOVE_IMAGES)
 
