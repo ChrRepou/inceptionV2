@@ -1,4 +1,4 @@
-.PHONY: all host volumes build up start down stop restart clear list logs logs_mariadb logs_wordpress logs_nginx re
+.PHONY: all host volumes build up start down stop restart clear list logs logs_mariadb logs_wordpress logs_nginx re remove_containers remove_images remove_volumes
 
 DC=docker-compose
 DOCKER_FILE=./srcs/$(DC).yaml
@@ -38,7 +38,7 @@ restart:
 	$(DC) -f $(DOCKER_FILE) up -d
 
 clear:
-	docker stop $(docker ps -qa);docker rm $(docker ps -qa);docker rmi -f $(docker images -qa);docker volume rm $(docker volume ls -q);docker network rm $(docker network ls -q) 2>/dev/null
+	stop remove_containers remove_images remove_volumes
 
 list:
 	docker ps -a
@@ -59,3 +59,13 @@ logs_nginx:
 	cd srcs && docker-compose logs nginx
 
 re: clear all
+
+remove_containers:
+	docker rm $(docker ps -qa)
+
+remove_volumes:
+	docker volume rm $(docker volume ls -q)
+
+remove_images:
+	docker rmi -f $(docker images -qa)
+
