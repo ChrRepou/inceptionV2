@@ -63,11 +63,11 @@ logs_nginx:
 re: clear all
 
 remove_containers:
-	$(DOCKER_REMOVE_CONTAINERS)
+	docker container prune -f
 
 remove_volumes:
-	$(DOCKER_REMOVE_VOLUMES)
+	docker volume prune -f
 
 remove_images:
-	$(DOCKER_REMOVE_IMAGES)
+	docker image prune -f 
 
