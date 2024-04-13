@@ -7,6 +7,8 @@ HOME_PATH=/home/christina
 
 all: volumes build up
 
+clear: stop remove_containers remove_images remove_volumes
+
 host:
 	sudo sed -i 's|localhost|crepou.42.fr|g' /etc/hosts
 
@@ -36,9 +38,6 @@ stop:
 restart:
 	$(DC) -f $(DOCKER_FILE) stop
 	$(DC) -f $(DOCKER_FILE) up -d
-
-clear:
-	stop remove_containers remove_images remove_volumes
 
 list:
 	docker ps -a
