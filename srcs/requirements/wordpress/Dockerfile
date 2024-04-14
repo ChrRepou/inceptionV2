@@ -29,4 +29,4 @@ RUN chmod +x /tmp/create_page.sh
 
 EXPOSE 9000
 
-ENTRYPOINT ["/tmp/create_page.sh" ]
+ENTRYPOINT ["sh", "/tmp/create_page.sh" ]
