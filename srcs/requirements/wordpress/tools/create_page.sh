@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Modify PHP-FPM configuration
-sed -i "s/listen = 127.0.0.1:9000/listen = wordpress:9000/g" /etc/php81/php-fpm.d/www.conf
+sed -i "s/listen = ${LOCALHOST}:${PHP_PORT}/listen = ${PHP_HOST}:${PHP_PORT}/g" /etc/php81/php-fpm.d/www.conf
 
 # Check if WordPress configuration exists
 if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
